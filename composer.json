@@ -1,4 +1,15 @@
 {
+    "name": "jumptwentyfour/project-analysers",
+    "description": "Coding standards for our PHP applications.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Williams",
+            "email": "alex@jump24.co.uk",
+            "homepage": "https://jump24.co.uk",
+            "role": "Lead Developer"
+        }
+    ],
     "require": {
         "squizlabs/php_codesniffer": "^3.5",
         "slevomat/coding-standard": "^6.4"
