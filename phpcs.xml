@@ -23,6 +23,11 @@
             <property name="spacing" value="0" />
         </properties>
     </rule>
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array" value="dd=>NULL,die=>NULL,var_dump=>NULL,print_r=>null"/>
+        </properties>
+    </rule>
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
     <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility"/>
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
@@ -58,11 +63,6 @@
     <rule ref="Squiz.Strings.ConcatenationSpacing">
         <properties>
             <property name="spacing" value="1" />
-        </properties>
-    </rule>
-    <rule ref="Generic.PHP.ForbiddenFunctions">
-        <properties>
-            <property name="forbiddenFunctions" type="array" value="dd=>NULL,die=>NULL,var_dump=>NULL, print_r=>null"/>
         </properties>
     </rule>
     <exclude-pattern>_ide_helper.php$</exclude-pattern>
