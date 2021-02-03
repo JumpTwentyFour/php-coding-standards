@@ -39,20 +39,15 @@ class RequestValidationRule implements Rule
             return [];
         }
 
-        return ["All request validation should be done in the form of a form request "
-            . "https://laravel.com/docs/8.x/validation#form-request-validation and not performed inline in a "
-            . "controller to ensure a separation of concerns."];
+        return ['All request validation should be done in the form of a form request ' .
+            'https://laravel.com/docs/8.x/validation#form-request-validation and not performed inline in a ' .
+            'controller to ensure a separation of concerns.'];
     }
 
     /**
      * Determine whether the Expr was called on a class instance.
-     *
-     * @param \PhpParser\Node\Expr $expr
-     * @param \PHPStan\Analyser\Scope $scope
-     * @param string $className
-     * @return bool
-     */
-    protected function isCalledOn(Expr $expr, Scope $scope, string $className)
+    */
+    protected function isCalledOn(Expr $expr, Scope $scope, string $className): bool
     {
         $calledOnType = $scope->getType($expr);
 

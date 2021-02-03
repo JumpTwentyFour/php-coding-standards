@@ -63,6 +63,7 @@
     <rule ref="Squiz.Strings.ConcatenationSpacing">
         <properties>
             <property name="spacing" value="1" />
+            <property name="ignoreNewlines" value="true"/>
         </properties>
     </rule>
     <exclude-pattern>_ide_helper.php$</exclude-pattern>
