@@ -22,7 +22,7 @@ class RequestValidationRuleTest extends RuleTestCase
                     'All request validation should be done in the form of a form request ' .
                     'https://laravel.com/docs/8.x/validation#form-request-validation and not performed inline in a ' .
                     'controller to ensure a separation of concerns.',
-                    15,
+                    11,
                 ],
             ]
         );
