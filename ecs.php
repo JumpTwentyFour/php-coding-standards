@@ -46,31 +46,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/ecs.php',
     ]);
 
-    $parameters->set('exclude_files', [
-        __DIR__ . '_ide_helper.php',
-        __DIR__ . '_ide_helper_models.php',
-        __DIR__ . '.phpstorm.meta.php',
-        __DIR__ . 'server.php',
-        __DIR__ . 'webpack.prod.js',
-        __DIR__ . 'babel.config.js',
-        '*\.blade\.php$',
-        __DIR__ . 'bootstrap',
-        __DIR__ . 'config',
-        __DIR__ . 'database',
-        __DIR__ . 'node_modules',
-        __DIR__ . 'public',
-        __DIR__ . 'resources',
-        __DIR__ . 'storage',
-        __DIR__ . 'vendor',
-    ]);
-
     $parameters->set(Option::SKIP, [
         CamelCapsFunctionNameSniff::class => [
-            __DIR__ . 'tests',
+            '/tests/**',
         ],
     ]);
 
     $services = $containerConfigurator->services();
+
+    $services->set(CamelCapsFunctionNameSniff::class);
 
     $services->set(SpaceAfterCastSniff::class)->property('spacing', 0);
     $services->set(SpaceAfterNotSniff::class)->property('spacing', 0);
