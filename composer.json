@@ -23,7 +23,6 @@
     },
     "require": {
         "php": "^8.0",
-        "squizlabs/php_codesniffer": "^3.5",
         "slevomat/coding-standard": "^6.4",
         "symplify/easy-coding-standard": "^9.1",
         "nunomaduro/larastan": "^0.6.11",
