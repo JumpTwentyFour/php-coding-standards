@@ -17,11 +17,25 @@ Then run the following commands:-
 
 `composer require jumptwentyfour/php-coding-standards --dev`
 
-## Extending the Base PHPCS File
-Create a new `phpcs.xml` file with the following:-
+## Running PHP Easy Coding Standard
+`vendor/bin/ecs check`
+
+## Extending the Base ecs.php file
+Create a new `ecs.php` file like the following example:-
 ```
-<?xml version="1.0"?>
-<ruleset>
-    <rule ref="vendor/jumptwentyfour/php-coding-standards/phpcs.xml"/>
-</ruleset>
+<?php
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\EasyCodingStandard\ValueObject\Option;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $containerConfigurator->import(__DIR__ . '/vendor/jumptwentyfour/php-coding-standards/ecs.php');
+
+    $parameters = $containerConfigurator->parameters();
+    
+    $parameters->set(Option::PATHS, [
+        __DIR__ . '/app',
+        __DIR__ . '/tests',
+    ]);
+};
 ```
