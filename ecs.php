@@ -10,6 +10,10 @@ use PHP_CodeSniffer\Standards\PSR12\Sniffs\ControlStructures\BooleanOperatorPlac
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ControlSignatureSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\Strings\ConcatenationSpacingSniff;
+use PhpCsFixer\Fixer\ArrayNotation\TrailingCommaInMultilineArrayFixer;
+use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
+use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
+use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
 use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ClassConstantVisibilitySniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
@@ -33,6 +37,7 @@ use SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
 use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSpacingSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -94,4 +99,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(ConcatenationSpacingSniff::class)
         ->property('spacing', 1)
         ->property('ignoreNewlines', true);
+
+    $services->set(TrailingCommaInMultilineArrayFixer::class);
+    $services->set(NoBlankLinesAfterClassOpeningFixer::class);
+    $services->set(SelfAccessorFixer::class);
+    $services->set(ArrayIndentationFixer::class);
+    $services->set(ArrayOpenerAndCloserNewlineFixer::class);
 };
