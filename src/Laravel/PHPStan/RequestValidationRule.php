@@ -39,9 +39,11 @@ class RequestValidationRule implements Rule
             return [];
         }
 
-        return ['All request validation should be done in the form of a form request ' .
+        $message = 'All request validation should be done in the form of a form request ' .
             'https://laravel.com/docs/8.x/validation#form-request-validation and not performed inline in a ' .
-            'controller to ensure a separation of concerns.'];
+            'controller to ensure a separation of concerns.';
+
+        return [$message];
     }
 
     /**
