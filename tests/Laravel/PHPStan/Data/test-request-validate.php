@@ -8,6 +8,8 @@ class TestControllerUsingRequestValidation
 {
     public function __invoke(Request $request)
     {
-        $request->validate(['test-rule' => 'required']);
+        $request->validate([
+            'test-rule' => 'required',
+        ]);
     }
 }
