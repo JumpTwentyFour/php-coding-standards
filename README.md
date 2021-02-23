@@ -17,6 +17,10 @@ Then run the following commands:-
 
 `composer require jumptwentyfour/php-coding-standards --dev`
 
+You will also need to add the following to your local phpstan.neon file includes:
+
+`- ./vendor/jumptwentyfour/php-coding-standards/phpstan.neon`
+
 ## Running PHP Easy Coding Standard
 `vendor/bin/ecs check`
 
