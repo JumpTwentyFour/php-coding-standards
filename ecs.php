@@ -17,6 +17,7 @@ use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
 use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ClassConstantVisibilitySniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
+use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\EarlyExitSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\NewWithParenthesesSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\RequireNullCoalesceOperatorSniff;
@@ -74,6 +75,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(TrailingArrayCommaSniff::class);
     $services->set(ClassConstantVisibilitySniff::class);
     $services->set(EmptyCommentSniff::class);
+    $services->set(UselessFunctionDocCommentSniff::class);
     $services->set(EarlyExitSniff::class);
     $services->set(NewWithParenthesesSniff::class);
     $services->set(RequireNullCoalesceOperatorSniff::class);
