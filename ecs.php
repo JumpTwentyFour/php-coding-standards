@@ -17,6 +17,7 @@ use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
 use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ClassConstantVisibilitySniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
+use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\EarlyExitSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\NewWithParenthesesSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\RequireNullCoalesceOperatorSniff;
@@ -44,7 +45,7 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
 
-    $parameters->set(Option::SETS, [SetList::CLEAN_CODE, SetList::PSR_1, SetList::PSR_12]);
+    $parameters->set(Option::SETS, [SetList::CLEAN_CODE, SetList::DOCBLOCK, SetList::PSR_1, SetList::PSR_12]);
 
     $parameters->set(Option::PATHS, [
         __DIR__ . '/src',
@@ -74,6 +75,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(TrailingArrayCommaSniff::class);
     $services->set(ClassConstantVisibilitySniff::class);
     $services->set(EmptyCommentSniff::class);
+    $services->set(UselessFunctionDocCommentSniff::class);
     $services->set(EarlyExitSniff::class);
     $services->set(NewWithParenthesesSniff::class);
     $services->set(RequireNullCoalesceOperatorSniff::class);

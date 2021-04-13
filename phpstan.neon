@@ -1,11 +1,11 @@
 includes:
-    - vendor/phpstan/phpstan-strict-rules/rules.neon
-    - vendor/nunomaduro/larastan/extension.neon
+    - ../../phpstan/phpstan-strict-rules/rules.neon
+    - ../../nunomaduro/larastan/extension.neon
 
 parameters:
     level: 8
     paths:
-        - app
+        - ../../../app
     excludePaths:
         - '.phpstorm.meta.php'
         - '_ide_helper.php'
@@ -14,3 +14,4 @@ parameters:
 
 rules:
     - JumpTwentyFour\PhpCodingStandards\Laravel\PHPStan\RequestValidationRule
+
