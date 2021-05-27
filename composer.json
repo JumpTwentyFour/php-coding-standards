@@ -17,7 +17,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/",
             "JumpTwentyFour\\PhpCodingStandards\\": "src/"
         }
     },
@@ -26,8 +25,5 @@
         "slevomat/coding-standard": "^6.4",
         "symplify/easy-coding-standard": "^9.1",
         "nikic/php-parser": "^4.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7.3 || ^8.2 || ^9.3"
     }
 }
