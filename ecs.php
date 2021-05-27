@@ -48,7 +48,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::SETS, [SetList::CLEAN_CODE, SetList::DOCBLOCK, SetList::PSR_1, SetList::PSR_12]);
 
     $parameters->set(Option::PATHS, [
-        __DIR__ . '/src',
         __DIR__ . '/ecs.php',
     ]);
 
