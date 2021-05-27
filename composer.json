@@ -10,16 +10,6 @@
             "role": "Lead Developer"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "JumpTwentyFour\\PhpCodingStandards\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "JumpTwentyFour\\PhpCodingStandards\\": "src/"
-        }
-    },
     "require": {
         "php": "^7.2|^8.0",
         "slevomat/coding-standard": "^6.4",
