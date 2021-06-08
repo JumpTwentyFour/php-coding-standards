@@ -68,6 +68,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'die' => null,
         'var_dump' => null,
         'print_r' => null,
+        'ray' => null,
     ]);
     $services->set(BooleanOperatorPlacementSniff::class)->property('allowOnly', 'first');
 
