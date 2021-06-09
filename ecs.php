@@ -45,7 +45,10 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
 
-    $parameters->set(Option::SETS, [SetList::CLEAN_CODE, SetList::DOCBLOCK, SetList::PSR_1, SetList::PSR_12]);
+    $containerConfigurator->import(SetList::CLEAN_CODE);
+    $containerConfigurator->import(SetList::DOCBLOCK);
+    $containerConfigurator->import(SetList::PSR_1);
+    $containerConfigurator->import(SetList::PSR_12);
 
     $parameters->set(Option::PATHS, [
         __DIR__ . '/ecs.php',
