@@ -62,7 +62,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services = $containerConfigurator->services();
 
-    $services->set(CamelCapsFunctionNameSniff::class);
+    $services->set(CamelCapsFunctionNameSniff::class)->property('strict', false);
 
     $services->set(SpaceAfterCastSniff::class)->property('spacing', 0);
     $services->set(SpaceAfterNotSniff::class)->property('spacing', 0);
