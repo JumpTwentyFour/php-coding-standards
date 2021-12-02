@@ -1,13 +1,16 @@
 {
     "name": "jumptwentyfour/php-coding-standards",
     "description": "Coding standards for our PHP applications.",
+    "keywords": [
+        "php", "standards", "code standards"
+    ],
     "license": "MIT",
     "authors": [
         {
+            "role": "Lead Developer",
             "name": "Alex Williams",
             "email": "alex@jump24.co.uk",
-            "homepage": "https://jump24.co.uk",
-            "role": "Lead Developer"
+            "homepage": "https://jump24.co.uk/"
         }
     ],
     "require": {
@@ -15,5 +18,10 @@
         "slevomat/coding-standard": "^7.0",
         "symplify/easy-coding-standard": "^9.1",
         "nikic/php-parser": "^4.0"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "config": {
+        "sort-packages": true
     }
 }
