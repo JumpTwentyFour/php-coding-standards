@@ -18,6 +18,7 @@ Once installed you will have access to our PHPStan configuration file, which you
 includes:
     - ./vendor/jumptwentyfour/php-coding-standards/phpstan.neon
 ```
+
 ## Running
 
 To run the code standard checks, simply run the following command:
