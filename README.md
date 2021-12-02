@@ -4,10 +4,10 @@ At [Jump24](https://jump24.co.uk/) we pride ourselves on keeping our coding stan
 
 ## Installation
 
-To install this package, simply use compose:
+To install this package, simply use composer:
 
 ```bash
-composer require composer require jumptwentyfour/php-coding-standards
+composer require jumptwentyfour/php-coding-standards
 ```
 
 ## Setup
