@@ -1,6 +1,5 @@
 # PHP Coding Standards
 
-<<<<<<< Updated upstream
 At [Jump24](https://jump24.co.uk/) we pride ourselves on keeping our coding standards under tight control, this is why we built this package.
 
 ## Installation
@@ -13,9 +12,7 @@ composer require jumptwentyfour/php-coding-standards
 
 ## Setup
 =======
-## Setup
 Then run the following commands:-
->>>>>>> Stashed changes
 
 Once installed you will have access to our PHPStan configuration file, which you can easily add to your `phpstan.neon`:
 
@@ -35,7 +32,7 @@ This will run the configured code standard checks for you, giving you feedback o
 
 ## Extending
 
-These code standards are extendible, all you need to do is create your own `ecs.php` in the root directory of your project:
+These code standards are extendable, all you need to do is create your own `ecs.php` in the root directory of your project:
 
 ```php
 <?php
