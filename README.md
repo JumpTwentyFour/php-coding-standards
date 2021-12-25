@@ -11,6 +11,8 @@ composer require jumptwentyfour/php-coding-standards
 ```
 
 ## Setup
+=======
+Then run the following commands:-
 
 Once installed you will have access to our PHPStan configuration file, which you can easily add to your `phpstan.neon`:
 
@@ -30,7 +32,7 @@ This will run the configured code standard checks for you, giving you feedback o
 
 ## Extending
 
-These code standards are extendible, all you need to do is create your own `ecs.php` in the root directory of your project:
+These code standards are extendable, all you need to do is create your own `ecs.php` in the root directory of your project:
 
 ```php
 <?php
