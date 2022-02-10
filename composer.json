@@ -28,7 +28,7 @@
     "require": {
         "php": "^7.2|^8.0",
         "slevomat/coding-standard": "^7.0",
-        "symplify/easy-coding-standard": "^10.0.6",
+        "symplify/easy-coding-standard": "^10.0.21",
         "nikic/php-parser": "^4.0"
     },
     "prefer-stable": true,
