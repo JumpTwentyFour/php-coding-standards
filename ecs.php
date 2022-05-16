@@ -47,7 +47,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->import(SetList::CLEAN_CODE);
     $containerConfigurator->import(SetList::DOCBLOCK);
-    $containerConfigurator->import(SetList::PSR_1);
     $containerConfigurator->import(SetList::PSR_12);
 
     $parameters->set(Option::PATHS, [
