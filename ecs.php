@@ -14,6 +14,7 @@ use PhpCsFixer\Fixer\ArrayNotation\TrailingCommaInMultilineArrayFixer;
 use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
 use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
 use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
+use SlevomatCodingStandard\Sniffs\Arrays\SingleLineArrayWhitespaceSniff;
 use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ClassConstantVisibilitySniff;
 use SlevomatCodingStandard\Sniffs\Classes\TraitUseDeclarationSniff;
@@ -129,4 +130,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(UselessTernaryOperatorSniff::class);
     $services->set(DisallowMixedTypeHintSniff::class);
     $services->set(ParameterTypeHintSniff::class);
+    $services->set(SingleLineArrayWhitespaceSniff::class);
 };
