@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UnusedFunctionParameterSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterCastSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff;
@@ -16,7 +17,9 @@ use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
 use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
 use SlevomatCodingStandard\Sniffs\Arrays\SingleLineArrayWhitespaceSniff;
 use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
+use SlevomatCodingStandard\Sniffs\Classes\BackedEnumTypeSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ClassConstantVisibilitySniff;
+use SlevomatCodingStandard\Sniffs\Classes\MethodSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Classes\TraitUseDeclarationSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
@@ -30,6 +33,7 @@ use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
 use SlevomatCodingStandard\Sniffs\Functions\UselessParameterDefaultValueSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff;
+use SlevomatCodingStandard\Sniffs\Namespaces\NamespaceSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\UnusedUsesSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff;
 use SlevomatCodingStandard\Sniffs\Operators\DisallowEqualOperatorsSniff;
@@ -65,28 +69,34 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         CamelCapsFunctionNameSniff::class => [
             '/tests/**',
         ],
-        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingTraversableTypeHintSpecification' => [
-            '*'
-        ],
-        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingTraversableTypeHintSpecification' => [
-            '*'
-        ],
+        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingTraversableTypeHintSpecification',
+        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingTraversableTypeHintSpecification',
+        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingNativeTypeHint',
+        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingNativeTypeHint',
+        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.UselessAnnotation',
+        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.UselessAnnotation',
     ]);
 
     $services = $containerConfigurator->services();
 
     $services->set(CamelCapsFunctionNameSniff::class);
 
-    $services->set(SpaceAfterCastSniff::class)->property('spacing', 0);
-    $services->set(SpaceAfterNotSniff::class)->property('spacing', 0);
-    $services->set(ForbiddenFunctionsSniff::class)->property('forbiddenFunctions', [
-        'dd' => null,
-        'die' => null,
-        'var_dump' => null,
-        'print_r' => null,
-        'ray' => null,
-    ]);
-    $services->set(BooleanOperatorPlacementSniff::class)->property('allowOnly', 'first');
+    $services->set(SpaceAfterCastSniff::class)
+        ->property('spacing', 0);
+
+    $services->set(SpaceAfterNotSniff::class)
+        ->property('spacing', 0);
+
+    $services->set(ForbiddenFunctionsSniff::class)
+        ->property('forbiddenFunctions', [
+            'dd' => null,
+            'die' => null,
+            'var_dump' => null,
+            'print_r' => null,
+            'ray' => null,
+        ]);
+    $services->set(BooleanOperatorPlacementSniff::class)
+        ->property('allowOnly', 'first');
 
     $services->set(TrailingArrayCommaSniff::class);
     $services->set(ClassConstantVisibilitySniff::class);
@@ -111,8 +121,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(NullableTypeForNullDefaultValueSniff::class);
     $services->set(ParameterTypeHintSpacingSniff::class);
     $services->set(ReturnTypeHintSpacingSniff::class);
+    $services->set(ControlSignatureSniff::class)
+        ->property('requiredSpacesBeforeColon', 0);
 
-    $services->set(ControlSignatureSniff::class)->property('requiredSpacesBeforeColon', 0);
     $services->set(CommentedOutCodeSniff::class, '25');
     $services->set(ConcatenationSpacingSniff::class)
         ->property('spacing', 1)
@@ -125,10 +136,17 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(ArrayOpenerAndCloserNewlineFixer::class);
     $services->set(DisallowEqualOperatorsSniff::class);
     $services->set(TraitUseDeclarationSniff::class);
-    $services->set(DeclareStrictTypesSniff::class);
+    $services->set(DeclareStrictTypesSniff::class)
+        ->property('spacesCountAroundEqualsSign', 0);
+
     $services->set(ReturnTypeHintSniff::class);
     $services->set(UselessTernaryOperatorSniff::class);
-    $services->set(DisallowMixedTypeHintSniff::class);
-    $services->set(ParameterTypeHintSniff::class);
+    $services->set(ParameterTypeHintSniff::class)
+        ->property('enableMixedTypeHint', false);
+
     $services->set(SingleLineArrayWhitespaceSniff::class);
+    $services->set(NamespaceSpacingSniff::class);
+    $services->set(MethodSpacingSniff::class);
+    $services->set(BackedEnumTypeSpacingSniff::class);
+    $services->set(UnusedFunctionParameterSniff::class);
 };
