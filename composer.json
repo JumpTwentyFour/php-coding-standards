@@ -23,6 +23,12 @@
             "email": "steve@jump24.co.uk",
             "homepage": "https://jump24.co.uk",
             "role": "Engineering Manager"
+        },
+        {
+            "name": "Mante Balzaraviciute",
+            "email": "mante@jump24.co.uk",
+            "homepage": "https://jump24.co.uk",
+            "role": "Backend Developer"
         }
     ],
     "require": {
