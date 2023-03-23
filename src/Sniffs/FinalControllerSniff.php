@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpCodingStandards\Sniffs;
+namespace JumpTwentyFour\PhpCodingStandards\Sniffs;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
