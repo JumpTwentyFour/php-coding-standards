@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace PhpCodingStandards\Sniffs;
+
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use SlevomatCodingStandard\Helpers\TokenHelper;
