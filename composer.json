@@ -19,15 +19,15 @@
             "role": "Senior Developer"
         },
         {
-            "name": "Steve McDougall",
-            "email": "steve@jump24.co.uk",
+            "name": "Mante Balzaraviciute",
+            "email": "mante@jump24.co.uk",
             "homepage": "https://jump24.co.uk",
-            "role": "Engineering Manager"
+            "role": "Backend Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "slevomat/coding-standard": "^7.0",
+        "slevomat/coding-standard": "^8.0",
         "symplify/easy-coding-standard": "^10.0.6",
         "nikic/php-parser": "^4.0"
     },
