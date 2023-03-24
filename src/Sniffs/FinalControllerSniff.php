@@ -27,6 +27,10 @@ class FinalControllerSniff implements Sniff
 
         $className = $phpcsFile->getDeclarationName($classPointer);
 
+        if ($className === 'Controller') {
+            return;
+        }
+
         if (str_contains($className, 'Test')) {
             return;
         }
