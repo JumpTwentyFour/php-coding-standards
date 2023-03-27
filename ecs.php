@@ -10,6 +10,7 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunction
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\ControlStructures\BooleanOperatorPlacementSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ControlSignatureSniff;
+use PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\Strings\ConcatenationSpacingSniff;
 use PhpCsFixer\Fixer\ArrayNotation\TrailingCommaInMultilineArrayFixer;
@@ -70,6 +71,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         CamelCapsFunctionNameSniff::class => [
             '/tests/**',
         ],
+        'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.PrivateNoUnderscore',
+        'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.MemberNotCamelCaps',
         'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingTraversableTypeHintSpecification',
         'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingTraversableTypeHintSpecification',
         'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingNativeTypeHint',
@@ -151,4 +154,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(BackedEnumTypeSpacingSniff::class);
     $services->set(UnusedFunctionParameterSniff::class);
     $services->set(FinalControllerSniff::class);
+    $services->set(ValidVariableNameSniff::class);
 };
