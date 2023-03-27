@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use JumpTwentyFour\PhpCodingStandards\Sniffs\FinalControllerSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UnusedFunctionParameterSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterCastSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
@@ -152,5 +153,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(MethodSpacingSniff::class);
     $services->set(BackedEnumTypeSpacingSniff::class);
     $services->set(UnusedFunctionParameterSniff::class);
+    $services->set(FinalControllerSniff::class);
     $services->set(ValidVariableNameSniff::class);
 };

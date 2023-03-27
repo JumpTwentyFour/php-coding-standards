@@ -31,6 +31,11 @@
         "symplify/easy-coding-standard": "^10.0.6",
         "nikic/php-parser": "^4.0"
     },
+    "autoload": {
+        "psr-4": {
+            "JumpTwentyFour\\PhpCodingStandards\\": "src"
+        }
+    },
     "prefer-stable": true,
     "minimum-stability": "dev",
     "config": {
