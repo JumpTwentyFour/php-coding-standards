@@ -37,6 +37,9 @@ These code standards are extendable, all you need to do is create your own `ecs.
 ```php
 <?php
 
+declare(strict_types=1);
+
+use JumpTwentyFour\PhpCodingStandards\Support\ConfigHelper;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 
@@ -49,5 +52,20 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/app',
         __DIR__ . '/tests',
     ]);
+    
+    $jumpSkips = ConfigHelper::make()->getParameter(Option::SKIP);
+    
+    $ecsConfig->skip(array_merge($jumpSkips, [
+        UnusedParameterSniff::class => [
+            __DIR__ . '/app/Console/Kernel.php',
+            __DIR__ . '/app/Exceptions/Handler.php',
+        ],
+        'Unused parameter $attributes.' => [
+            __DIR__ . '/database/*.php',
+        ],
+        CamelCapsFunctionNameSniff::class => [
+            '/tests/**',
+        ],
+    ]));
 };
 ```
