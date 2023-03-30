@@ -18,7 +18,7 @@ class ConfigHelper
         return new self($config);
     }
 
-    public function getParameter(string $name)
+    public function getParameter(string $name): mixed
     {
         $reflectedConfig = new ReflectionObject($this->config);
 
