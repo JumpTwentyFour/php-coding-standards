@@ -40,22 +40,20 @@ These code standards are extendable, all you need to do is create your own `ecs.
 declare(strict_types=1);
 
 use JumpTwentyFour\PhpCodingStandards\Support\ConfigHelper;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(__DIR__ . '/vendor/jumptwentyfour/php-coding-standards/ecs.php');
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->import(__DIR__ . '/vendor/jumptwentyfour/php-coding-standards/ecs.php');
 
-    $parameters = $containerConfigurator->parameters();
+    $parameters = $ecsConfig->parameters();
     
     $parameters->set(Option::PATHS, [
         __DIR__ . '/app',
         __DIR__ . '/tests',
     ]);
     
-    $jumpSkips = ConfigHelper::make()->getParameter(Option::SKIP);
-    
-    $ecsConfig->skip(array_merge($jumpSkips, [
+    $ecsConfig->skip(array_merge(ConfigHelper::make()->getParameter(Option::SKIP), [
         UnusedParameterSniff::class => [
             __DIR__ . '/app/Console/Kernel.php',
             __DIR__ . '/app/Exceptions/Handler.php',
