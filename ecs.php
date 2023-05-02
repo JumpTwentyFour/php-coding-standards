@@ -52,19 +52,19 @@ use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSpacingSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
+return static function (ECSConfig $ecsConfig): void {
+    $parameters = $ecsConfig->parameters();
 
-    $containerConfigurator->import(SetList::CLEAN_CODE);
-    $containerConfigurator->import(SetList::DOCBLOCK);
-    $containerConfigurator->import(SetList::PSR_12);
+    $ecsConfig->import(SetList::CLEAN_CODE);
+    $ecsConfig->import(SetList::DOCBLOCK);
+    $ecsConfig->import(SetList::PSR_12);
 
-    $containerConfigurator->ruleWithConfiguration(PhpUnitTestAnnotationFixer::class, [
+    $ecsConfig->ruleWithConfiguration(PhpUnitTestAnnotationFixer::class, [
         'style' => 'annotation',
     ]);
 
@@ -86,7 +86,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.UselessAnnotation',
     ]);
 
-    $services = $containerConfigurator->services();
+    $services = $ecsConfig->services();
 
     $services->set(CamelCapsFunctionNameSniff::class);
 
