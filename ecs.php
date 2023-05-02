@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Standards\Squiz\Sniffs\Strings\ConcatenationSpacingSniff;
 use PhpCsFixer\Fixer\ArrayNotation\TrailingCommaInMultilineArrayFixer;
 use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
 use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
+use PhpCsFixer\Fixer\PhpUnit\PhpUnitTestAnnotationFixer;
 use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
 use SlevomatCodingStandard\Sniffs\Arrays\SingleLineArrayWhitespaceSniff;
 use SlevomatCodingStandard\Sniffs\Arrays\TrailingArrayCommaSniff;
@@ -62,6 +63,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::CLEAN_CODE);
     $containerConfigurator->import(SetList::DOCBLOCK);
     $containerConfigurator->import(SetList::PSR_12);
+
+    $containerConfigurator->ruleWithConfiguration(PhpUnitTestAnnotationFixer::class, [
+        'style' => 'annotation',
+    ]);
 
     $parameters->set(Option::PATHS, [
         __DIR__ . '/ecs.php',
