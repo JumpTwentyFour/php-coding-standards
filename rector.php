@@ -101,18 +101,22 @@ return static function (RectorConfig $rectorConfig): void {
         $rectorConfig->rule(RestoreDefaultNullToNullableTypePropertyRector::class);
     }
 
+    $sets = [];
+
     //PHP 8.0
     if (PHP_VERSION_ID >= 80000) {
-        $rectorConfig->sets([SetList::PHP_80]);
+        $sets[] = SetList::PHP_80;
     }
 
     //PHP 8.1
     if (PHP_VERSION_ID >= 81000) {
-        $rectorConfig->sets([SetList::PHP_81]);
+        $sets[] = SetList::PHP_81;
     }
 
     //PHP 8.2
     if (PHP_VERSION_ID >= 82000) {
-        $rectorConfig->sets([SetList::PHP_82]);
+        $sets[] = SetList::PHP_82;
     }
+
+    $rectorConfig->sets($sets);
 };
