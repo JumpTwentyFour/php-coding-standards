@@ -7,13 +7,10 @@ At [Jump24](https://jump24.co.uk/) we pride ourselves on keeping our coding stan
 To install this package, simply use composer:
 
 ```bash
-composer require jumptwentyfour/php-coding-standards
+composer require jumptwentyfour/php-coding-standards --dev
 ```
 
-## Setup
-=======
-Then run the following commands:-
-
+## PHPStan
 Once installed you will have access to our PHPStan configuration file, which you can easily add to your `phpstan.neon`:
 
 ```neon
@@ -21,7 +18,9 @@ includes:
     - ./vendor/jumptwentyfour/php-coding-standards/phpstan.neon
 ```
 
-## Running
+## Easy Coding Standard  (ECS)
+
+### Running ECS
 
 To run the code standard checks, simply run the following command:
 
@@ -30,7 +29,7 @@ To run the code standard checks, simply run the following command:
 ```
 This will run the configured code standard checks for you, giving you feedback on where your code is and what improvements you need to implement
 
-## Extending
+### Extending ECS
 
 These code standards are extendable, all you need to do is create your own `ecs.php` in the root directory of your project:
 
@@ -65,5 +64,40 @@ return static function (ECSConfig $ecsConfig): void {
             '/tests/**',
         ],
     ]));
+};
+```
+## Rector
+
+### Running Rector
+
+#### Dry Run
+
+```bash
+vendor/bin/rector process app --dry-run
+```
+
+#### Normal Run
+
+```bash
+vendor/bin/rector process app
+```
+
+### Extending Rector
+
+These rector rules are extendable, all you need to do is create your own `rector.php` in the root directory of your project:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use Rector\Config\RectorConfig;
+
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->import(__DIR__ . '/vendor/jumptwentyfour/php-coding-standards/rector.php');
+    
+    $rectorConfig->skip([
+        PrivatizeFinalClassPropertyRector::class,
+    ]);
 };
 ```
