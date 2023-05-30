@@ -13,26 +13,23 @@ use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\If_\ShortenElseIfRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\Property\RemoveUnusedPrivatePropertyRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
+use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\DeadCode\Rector\Stmt\RemoveUnreachableStatementRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
+use Rector\EarlyReturn\Rector\If_\ChangeNestedIfsToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\If_\RemoveAlwaysElseRector;
+use Rector\EarlyReturn\Rector\Return_\PreparedValueToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\StmtsAwareInterface\ReturnEarlyIfVariableRector;
 use Rector\Php71\Rector\FuncCall\CountOnNullRector;
+use Rector\Php71\Rector\TryCatch\MultiExceptionCatchRector;
 use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
-use Rector\Php80\Rector\Catch_\RemoveUnusedVariableInCatchRector;
-use Rector\Php80\Rector\ClassConstFetch\ClassOnThisVariableObjectRector;
-use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
-use Rector\Php80\Rector\FuncCall\ClassOnObjectRector;
-use Rector\Php80\Rector\FunctionLike\MixedTypeRector;
-use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
-use Rector\Php80\Rector\Identical\StrStartsWithRector;
-use Rector\Php80\Rector\NotIdentical\StrContainsRector;
-use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
-use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
+use Rector\Php74\Rector\Property\RestoreDefaultNullToNullableTypePropertyRector;
 use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
 use Rector\Privatization\Rector\Property\ChangeReadOnlyPropertyWithDefaultValueToConstantRector;
 use Rector\Privatization\Rector\Property\PrivatizeFinalClassPropertyRector;
+use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\BooleanAnd\BinaryOpNullableToInstanceofRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\ParamTypeByMethodCallTypeRector;
@@ -61,10 +58,14 @@ return static function (RectorConfig $rectorConfig): void {
     //Dead Code
     $rectorConfig->rule(RemoveUnreachableStatementRector::class);
     $rectorConfig->rule(RemoveUnusedPrivatePropertyRector::class);
+    $rectorConfig->rule(RemoveUselessParamTagRector::class);
     $rectorConfig->rule(RemoveUselessReturnTagRector::class);
+    $rectorConfig->rule(RemoveUselessVarTagRector::class);
 
     //Early Return
     $rectorConfig->rule(ChangeAndIfToEarlyReturnRector::class);
+    $rectorConfig->rule(ChangeNestedIfsToEarlyReturnRector::class);
+    $rectorConfig->rule(PreparedValueToEarlyReturnRector::class);
     $rectorConfig->rule(RemoveAlwaysElseRector::class);
     $rectorConfig->rule(ReturnEarlyIfVariableRector::class);
 
@@ -87,6 +88,7 @@ return static function (RectorConfig $rectorConfig): void {
     //PHP 7.1
     if (PHP_VERSION_ID >= 71000) {
         $rectorConfig->rule(CountOnNullRector::class);
+        $rectorConfig->rule(MultiExceptionCatchRector::class);
     }
 
     //PHP 7.3
@@ -94,21 +96,23 @@ return static function (RectorConfig $rectorConfig): void {
         $rectorConfig->rule(JsonThrowOnErrorRector::class);
     }
 
+    //PHP 7.4
+    if (PHP_VERSION_ID >= 74000) {
+        $rectorConfig->rule(RestoreDefaultNullToNullableTypePropertyRector::class);
+    }
+
     //PHP 8.0
     if (PHP_VERSION_ID >= 80000) {
-        $rectorConfig->rule(ClassOnObjectRector::class);
-        $rectorConfig->rule(ClassOnThisVariableObjectRector::class);
-        $rectorConfig->rule(ClassPropertyAssignToConstructorPromotionRector::class);
-        $rectorConfig->rule(MixedTypeRector::class);
-        $rectorConfig->rule(RemoveUnusedVariableInCatchRector::class);
-        $rectorConfig->rule(StrContainsRector::class);
-        $rectorConfig->rule(StrStartsWithRector::class);
-        $rectorConfig->rule(UnionTypesRector::class);
+        $rectorConfig->sets([SetList::PHP_80]);
     }
 
     //PHP 8.1
     if (PHP_VERSION_ID >= 81000) {
-        $rectorConfig->rule(NewInInitializerRector::class);
-        $rectorConfig->rule(NullToStrictStringFuncCallArgRector::class);
+        $rectorConfig->sets([SetList::PHP_81]);
+    }
+
+    //PHP 8.2
+    if (PHP_VERSION_ID >= 82000) {
+        $rectorConfig->sets([SetList::PHP_82]);
     }
 };
