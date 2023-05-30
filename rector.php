@@ -108,7 +108,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     //PHP 8.1
     if (PHP_VERSION_ID >= 81000) {
-        $rectorConfig->rule(NullToStrictStringFuncCallArgRector::class);
         $rectorConfig->rule(NewInInitializerRector::class);
+        $rectorConfig->rule(NullToStrictStringFuncCallArgRector::class);
     }
 };
