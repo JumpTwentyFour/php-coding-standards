@@ -11,8 +11,6 @@ composer require jumptwentyfour/php-coding-standards
 ```
 
 ## Setup
-=======
-Then run the following commands:-
 
 Once installed you will have access to our PHPStan configuration file, which you can easily add to your `phpstan.neon`:
 
@@ -53,7 +51,7 @@ return static function (ECSConfig $ecsConfig): void {
         __DIR__ . '/tests',
     ]);
     
-    $ecsConfig->skip(array_merge(ConfigHelper::make()->getParameter(Option::SKIP), [
+    $ecsConfig->skip(array_merge(ConfigHelper::make($ecsConfig)->getParameter(Option::SKIP), [
         UnusedParameterSniff::class => [
             __DIR__ . '/app/Console/Kernel.php',
             __DIR__ . '/app/Exceptions/Handler.php',
