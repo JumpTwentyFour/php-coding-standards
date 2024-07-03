@@ -60,6 +60,87 @@ ECSConfig::configure()
     ->withConfiguredRule(PhpUnitTestAnnotationFixer::class, [
         'style' => 'annotation',
     ])
+    ->withPaths([
+        __DIR__ . '/ecs.php',
+    ])
+    ->withSkip([
+        [
+            CamelCapsFunctionNameSniff::class => [
+                '/tests/**',
+            ],
+            'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.PrivateNoUnderscore',
+            'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.MemberNotCamelCaps',
+            'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingTraversableTypeHintSpecification',
+            'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingTraversableTypeHintSpecification',
+            'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingNativeTypeHint',
+            'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingNativeTypeHint',
+            'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.UselessAnnotation',
+            'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.UselessAnnotation',
+        ]
+    ])
+    ->withRules(
+        [
+            CamelCapsFunctionNameSniff::class,
+            TrailingArrayCommaSniff::class,
+            ClassConstantVisibilitySniff::class,
+            EmptyCommentSniff::class,
+            UselessFunctionDocCommentSniff::class,
+            EarlyExitSniff::class,
+            NewWithParenthesesSniff::class,
+            RequireNullCoalesceOperatorSniff::class,
+            DeadCatchSniff::class,
+            UnusedInheritedVariablePassedToClosureSniff::class,
+            UnusedParameterSniff::class,
+            UselessParameterDefaultValueSniff::class,
+            AlphabeticallySortedUsesSniff::class,
+            MultipleUsesPerLineSniff::class,
+            UnusedUsesSniff::class,
+            UseFromSameNamespaceSniff::class,
+            ShortListSniff::class,
+            TypeCastSniff::class,
+            UselessParenthesesSniff::class,
+            UselessSemicolonSniff::class,
+            LongTypeHintsSniff::class,
+            NullableTypeForNullDefaultValueSniff::class,
+            ParameterTypeHintSpacingSniff::class,
+            ReturnTypeHintSpacingSniff::class,
+            \PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer::class,
+            NoBlankLinesAfterClassOpeningFixer::class,
+            SelfAccessorFixer::class,
+            ArrayIndentationFixer::class,
+            ArrayOpenerAndCloserNewlineFixer::class,
+            DisallowEqualOperatorsSniff::class,
+            TraitUseDeclarationSniff::class,
+            DeclareStrictTypesSniff::class,
+            ReturnTypeHintSniff::class,
+            UselessTernaryOperatorSniff::class,
+            SingleLineArrayWhitespaceSniff::class,
+            NamespaceSpacingSniff::class,
+            MethodSpacingSniff::class,
+            BackedEnumTypeSpacingSniff::class,
+            UnusedFunctionParameterSniff::class,
+            FinalControllerSniff::class,
+            ValidVariableNameSniff::class,
+            SpaceAfterCastSniff::class => [
+                'spacing' => 0,
+            ],
+            SpaceAfterNotSniff::class => [
+                'spacing' => 0,
+            ],
+            ForbiddenFunctionsSniff::class => [
+                'forbiddenFunctions' => [
+                        'dd' => null,
+                        'die' => null,
+                        'var_dump' => null,
+                        'print_r' => null,
+                        'ray' => null,
+                ]
+            ],
+            BooleanOperatorPlacementSniff::class => [
+                'allowOnly' => 'first',
+            ],
+        ]
+    )
     ->withPreparedSets(psr12: true, docblocks: true, cleanCode: true)
     // modify parallel run
     ->withParallel(timeoutSeconds: 120, maxNumberOfProcess: 32, jobSize: 20);
@@ -67,76 +148,76 @@ ECSConfig::configure()
 return static function (ECSConfig $ecsConfig): void {
     $parameters = $ecsConfig->parameters();
 
-    $ecsConfig->import(SetList::CLEAN_CODE);
-    $ecsConfig->import(SetList::DOCBLOCK);
-    $ecsConfig->import(SetList::PSR_12);
+//    $ecsConfig->import(SetList::CLEAN_CODE);
+//    $ecsConfig->import(SetList::DOCBLOCK);
+//    $ecsConfig->import(SetList::PSR_12);
+//
+//    $ecsConfig->ruleWithConfiguration(PhpUnitTestAnnotationFixer::class, [
+//        'style' => 'annotation',
+//    ]);
 
-    $ecsConfig->ruleWithConfiguration(PhpUnitTestAnnotationFixer::class, [
-        'style' => 'annotation',
-    ]);
+//    $parameters->set(Option::PATHS, [
+//        __DIR__ . '/ecs.php',
+//    ]);
 
-    $parameters->set(Option::PATHS, [
-        __DIR__ . '/ecs.php',
-    ]);
-
-    $parameters->set(Option::SKIP, [
-        CamelCapsFunctionNameSniff::class => [
-            '/tests/**',
-        ],
-        'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.PrivateNoUnderscore',
-        'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.MemberNotCamelCaps',
-        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingTraversableTypeHintSpecification',
-        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingTraversableTypeHintSpecification',
-        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingNativeTypeHint',
-        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingNativeTypeHint',
-        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.UselessAnnotation',
-        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.UselessAnnotation',
-    ]);
+//    $parameters->set(Option::SKIP, [
+//        CamelCapsFunctionNameSniff::class => [
+//            '/tests/**',
+//        ],
+//        'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.PrivateNoUnderscore',
+//        'PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.MemberNotCamelCaps',
+//        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingTraversableTypeHintSpecification',
+//        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingTraversableTypeHintSpecification',
+//        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.MissingNativeTypeHint',
+//        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.MissingNativeTypeHint',
+//        'SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff.UselessAnnotation',
+//        'SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff.UselessAnnotation',
+//    ]);
 
     $services = $ecsConfig->services();
 
-    $services->set(CamelCapsFunctionNameSniff::class);
+    //$services->set(CamelCapsFunctionNameSniff::class);
+//
+//    $services->set(SpaceAfterCastSniff::class)
+//        ->property('spacing', 0);
+//
+//    $services->set(SpaceAfterNotSniff::class)
+//        ->property('spacing', 0);
 
-    $services->set(SpaceAfterCastSniff::class)
-        ->property('spacing', 0);
+//    $services->set(ForbiddenFunctionsSniff::class)
+//        ->property('forbiddenFunctions', [
+//            'dd' => null,
+//            'die' => null,
+//            'var_dump' => null,
+//            'print_r' => null,
+//            'ray' => null,
+//        ]);
+//    $services->set(BooleanOperatorPlacementSniff::class)
+//        ->property('allowOnly', 'first');
 
-    $services->set(SpaceAfterNotSniff::class)
-        ->property('spacing', 0);
-
-    $services->set(ForbiddenFunctionsSniff::class)
-        ->property('forbiddenFunctions', [
-            'dd' => null,
-            'die' => null,
-            'var_dump' => null,
-            'print_r' => null,
-            'ray' => null,
-        ]);
-    $services->set(BooleanOperatorPlacementSniff::class)
-        ->property('allowOnly', 'first');
-
-    $services->set(TrailingArrayCommaSniff::class);
-    $services->set(ClassConstantVisibilitySniff::class);
-    $services->set(EmptyCommentSniff::class);
-    $services->set(UselessFunctionDocCommentSniff::class);
-    $services->set(EarlyExitSniff::class);
-    $services->set(NewWithParenthesesSniff::class);
-    $services->set(RequireNullCoalesceOperatorSniff::class);
-    $services->set(DeadCatchSniff::class);
-    $services->set(UnusedInheritedVariablePassedToClosureSniff::class);
-    $services->set(UnusedParameterSniff::class);
-    $services->set(UselessParameterDefaultValueSniff::class);
-    $services->set(AlphabeticallySortedUsesSniff::class);
-    $services->set(MultipleUsesPerLineSniff::class);
-    $services->set(UnusedUsesSniff::class);
-    $services->set(UseFromSameNamespaceSniff::class);
-    $services->set(ShortListSniff::class);
-    $services->set(TypeCastSniff::class);
-    $services->set(UselessParenthesesSniff::class);
-    $services->set(UselessSemicolonSniff::class);
-    $services->set(LongTypeHintsSniff::class);
-    $services->set(NullableTypeForNullDefaultValueSniff::class);
-    $services->set(ParameterTypeHintSpacingSniff::class);
-    $services->set(ReturnTypeHintSpacingSniff::class);
+//    $services->set(TrailingArrayCommaSniff::class);
+//    $services->set(ClassConstantVisibilitySniff::class);
+//    $services->set(EmptyCommentSniff::class);
+//    $services->set(UselessFunctionDocCommentSniff::class);
+//    $services->set(EarlyExitSniff::class);
+//    $services->set(NewWithParenthesesSniff::class);
+//    $services->set(RequireNullCoalesceOperatorSniff::class);
+//    $services->set(DeadCatchSniff::class);
+//    $services->set(UnusedInheritedVariablePassedToClosureSniff::class);
+//    $services->set(UnusedParameterSniff::class);
+//    $services->set(UselessParameterDefaultValueSniff::class);
+//    $services->set(AlphabeticallySortedUsesSniff::class);
+//    $services->set(MultipleUsesPerLineSniff::class);
+//    $services->set(UnusedUsesSniff::class);
+//    $services->set(UseFromSameNamespaceSniff::class);
+//    $services->set(ShortListSniff::class);
+//    $services->set(TypeCastSniff::class);
+//    $services->set(UselessParenthesesSniff::class);
+//    $services->set(UselessSemicolonSniff::class);
+//    $services->set(LongTypeHintsSniff::class);
+//    $services->set(NullableTypeForNullDefaultValueSniff::class);
+//    $services->set(ParameterTypeHintSpacingSniff::class);
+//    $services->set(ReturnTypeHintSpacingSniff::class);
     $services->set(ControlSignatureSniff::class)
         ->property('requiredSpacesBeforeColon', 0);
 
@@ -145,26 +226,26 @@ return static function (ECSConfig $ecsConfig): void {
         ->property('spacing', 1)
         ->property('ignoreNewlines', true);
 
-    $services->set(\PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer::class);
-    $services->set(NoBlankLinesAfterClassOpeningFixer::class);
-    $services->set(SelfAccessorFixer::class);
-    $services->set(ArrayIndentationFixer::class);
-    $services->set(ArrayOpenerAndCloserNewlineFixer::class);
-    $services->set(DisallowEqualOperatorsSniff::class);
-    $services->set(TraitUseDeclarationSniff::class);
+//    $services->set(\PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer::class);
+//    $services->set(NoBlankLinesAfterClassOpeningFixer::class);
+//    $services->set(SelfAccessorFixer::class);
+//    $services->set(ArrayIndentationFixer::class);
+//    $services->set(ArrayOpenerAndCloserNewlineFixer::class);
+//    $services->set(DisallowEqualOperatorsSniff::class);
+//    $services->set(TraitUseDeclarationSniff::class);
     $services->set(DeclareStrictTypesSniff::class)
         ->property('spacesCountAroundEqualsSign', 0);
 
-    $services->set(ReturnTypeHintSniff::class);
-    $services->set(UselessTernaryOperatorSniff::class);
+//    $services->set(ReturnTypeHintSniff::class);
+//    $services->set(UselessTernaryOperatorSniff::class);
     $services->set(ParameterTypeHintSniff::class)
         ->property('enableMixedTypeHint', false);
 
-    $services->set(SingleLineArrayWhitespaceSniff::class);
-    $services->set(NamespaceSpacingSniff::class);
-    $services->set(MethodSpacingSniff::class);
-    $services->set(BackedEnumTypeSpacingSniff::class);
-    $services->set(UnusedFunctionParameterSniff::class);
-    $services->set(FinalControllerSniff::class);
-    $services->set(ValidVariableNameSniff::class);
+//    $services->set(SingleLineArrayWhitespaceSniff::class);
+//    $services->set(NamespaceSpacingSniff::class);
+//    $services->set(MethodSpacingSniff::class);
+//    $services->set(BackedEnumTypeSpacingSniff::class);
+//    $services->set(UnusedFunctionParameterSniff::class);
+//    $services->set(FinalControllerSniff::class);
+//    $services->set(ValidVariableNameSniff::class);
 };
