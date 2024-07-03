@@ -2,7 +2,9 @@
     "name": "jumptwentyfour/php-coding-standards",
     "description": "Coding standards for our PHP applications.",
     "keywords": [
-        "php", "standards", "code standards"
+        "php",
+        "standards",
+        "code standards"
     ],
     "license": "MIT",
     "authors": [
@@ -43,5 +45,9 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "scripts": {
+        "check-cs": "vendor/bin/ecs check --ansi",
+        "fix-cs": "vendor/bin/ecs check --fix --ansi"
     }
 }
