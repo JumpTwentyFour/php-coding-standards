@@ -45,7 +45,6 @@ use SlevomatCodingStandard\Sniffs\PHP\TypeCastSniff;
 use SlevomatCodingStandard\Sniffs\PHP\UselessParenthesesSniff;
 use SlevomatCodingStandard\Sniffs\PHP\UselessSemicolonSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
-use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
@@ -56,6 +55,14 @@ use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
+
+ECSConfig::configure()
+    ->withConfiguredRule(PhpUnitTestAnnotationFixer::class, [
+        'style' => 'annotation',
+    ])
+    ->withPreparedSets(psr12: true, docblocks: true, cleanCode: true)
+    // modify parallel run
+    ->withParallel(timeoutSeconds: 120, maxNumberOfProcess: 32, jobSize: 20);
 
 return static function (ECSConfig $ecsConfig): void {
     $parameters = $ecsConfig->parameters();
@@ -138,7 +145,7 @@ return static function (ECSConfig $ecsConfig): void {
         ->property('spacing', 1)
         ->property('ignoreNewlines', true);
 
-    $services->set(TrailingCommaInMultilineArrayFixer::class);
+    $services->set(\PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer::class);
     $services->set(NoBlankLinesAfterClassOpeningFixer::class);
     $services->set(SelfAccessorFixer::class);
     $services->set(ArrayIndentationFixer::class);
