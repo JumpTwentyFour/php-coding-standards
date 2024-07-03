@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\CommentedOutCodeSniff;
 use PHP_CodeSniffer\Standards\Squiz\Sniffs\Strings\ConcatenationSpacingSniff;
 use PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer;
 use PhpCsFixer\Fixer\ClassNotation\SelfAccessorFixer;
+use PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitTestAnnotationFixer;
 use PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer;
 use SlevomatCodingStandard\Sniffs\Arrays\SingleLineArrayWhitespaceSniff;
@@ -52,7 +53,6 @@ use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
-use PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer;
 
 return ECSConfig::configure()
     ->withConfiguredRule(PhpUnitTestAnnotationFixer::class, [
@@ -117,7 +117,8 @@ return ECSConfig::configure()
             UnusedFunctionParameterSniff::class,
             FinalControllerSniff::class,
             ValidVariableNameSniff::class,
-        ])
+        ]
+    )
     ->withConfiguredRule(SpaceAfterCastSniff::class, [
         'spacing' => 0,
     ])
@@ -126,12 +127,12 @@ return ECSConfig::configure()
     ])
     ->withConfiguredRule(ForbiddenFunctionsSniff::class, [
         'forbiddenFunctions' => [
-                'dd' => null,
-                'die' => null,
-                'var_dump' => null,
-                'print_r' => null,
-                'ray' => null,
-        ]
+            'dd' => null,
+            'die' => null,
+            'var_dump' => null,
+            'print_r' => null,
+            'ray' => null,
+        ],
     ])
     ->withConfiguredRule(BooleanOperatorPlacementSniff::class, [
         'allowOnly' => 'first',
@@ -139,7 +140,9 @@ return ECSConfig::configure()
     ->withConfiguredRule(ControlSignatureSniff::class, [
         'requiredSpacesBeforeColon' => 0,
     ])
-    ->withConfiguredRule(CommentedOutCodeSniff::class, ['maxPercentage' => 25])
+    ->withConfiguredRule(CommentedOutCodeSniff::class, [
+        'maxPercentage' => 25,
+    ])
     ->withConfiguredRule(ConcatenationSpacingSniff::class, [
         'spacing' => 1,
         'ignoreNewlines' => true,
